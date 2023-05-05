@@ -1,91 +1,93 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
- /* styling topmenu */
- #topmenu {
-  background-color: #0074D9;
-  position: absolute;
-  width: 100%;
-}
-   
-/* styling topmenu anchor element */
-#topmenu a {
-  float:left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 15px;
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
 }
 
-.topmenu-right{
-  float:right;
+/* styling topmenu */
+#topmenu {
+	background-color: #0074D9;
+	position: absolute;
+	width: 100%;
+}
+
+/* styling topmenu anchor element */
+#topmenu a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 15px;
+}
+
+.topmenu-right {
+	float: right;
 }
 
 /* hover effect of topmenu anchor element */
 #topmenu a:hover {
-  background-color: #ddd;
-  color: black;
+	background-color: #ddd;
+	color: black;
 }
-   
+
 /* styling search bar */
-.search input[type=text]{
-  width:300px;
-  height:25px;
-  border-radius:25px;
-  border: none;
+.search input[type=text] {
+	width: 300px;
+	height: 25px;
+	border-radius: 25px;
+	border: none;
 }
-   
-.search{
-  float:right;
-  margin:7px;
+
+.search {
+	float: right;
+	margin: 7px;
 }
-   
-.search button{
-  background-color: #0074D9;
-  color: #f2f2f2;
-  float: right;
-  padding: 5px 10px;
-  margin-right: 16px;
-  font-size: 12px;
-  border: none;
-  cursor: pointer;
+
+.search button {
+	background-color: #0074D9;
+	color: #f2f2f2;
+	float: right;
+	padding: 5px 10px;
+	margin-right: 16px;
+	font-size: 12px;
+	border: none;
+	cursor: pointer;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
@@ -93,12 +95,12 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;	
+	padding: 0;
 	font-family: Raleway, sans-serif;
 }
 
 body {
-	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);
 }
 
 .container {
@@ -108,21 +110,21 @@ body {
 	min-height: 100vh;
 }
 
-.screen {		
-	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
-	position: relative;	
+.screen {
+	background: linear-gradient(90deg, #5D54A4, #7C78B8);
+	position: relative;
 	height: 600px;
-	width: 360px;	
+	width: 360px;
 	box-shadow: 0px 0px 24px #5C5696;
 }
 
 .screen__content {
 	z-index: 1;
-	position: relative;	
+	position: relative;
 	height: 100%;
 }
 
-.screen__background {		
+.screen__background {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -130,7 +132,7 @@ body {
 	bottom: 0;
 	z-index: 0;
 	-webkit-clip-path: inset(0 0 0 0);
-	clip-path: inset(0 0 0 0);	
+	clip-path: inset(0 0 0 0);
 }
 
 .screen__background__shape {
@@ -141,18 +143,18 @@ body {
 .screen__background__shape1 {
 	height: 520px;
 	width: 520px;
-	background: #FFF;	
+	background: #FFF;
 	top: -50px;
-	right: 120px;	
+	right: 120px;
 	border-radius: 0 72px 0 0;
 }
 
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background: #6C63AC;	
+	background: #6C63AC;
 	top: -172px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
@@ -161,16 +163,16 @@ body {
 	width: 190px;
 	background: linear-gradient(270deg, #5D54A4, #6A679E);
 	top: -24px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #7E7BB9;	
+	background: #7E7BB9;
 	top: 420px;
-	right: 50px;	
+	right: 50px;
 	border-radius: 60px;
 }
 
@@ -181,8 +183,8 @@ body {
 }
 
 .login__field {
-	padding: 20px 0px;	
-	position: relative;	
+	padding: 20px 0px;
+	position: relative;
 }
 
 .login__icon {
@@ -240,7 +242,7 @@ body {
 	color: #7875B5;
 }
 
-.social-login {	
+.social-login {
 	position: absolute;
 	height: 140px;
 	width: 160px;
@@ -259,12 +261,12 @@ body {
 .social-login__icon {
 	padding: 20px 10px;
 	color: #fff;
-	text-decoration: none;	
+	text-decoration: none;
 	text-shadow: 0px 0px 8px #7875B5;
 }
 
 .social-login__icon:hover {
-	transform: scale(1.5);	
+	transform: scale(1.5);
 }
 
 .productList {
@@ -273,9 +275,11 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	background: #212121;
-  }
-  
-  .card {
+	flex-basis: 70%;
+	width: 70%;
+}
+
+.card {
 	position: relative;
 	width: 320px;
 	height: 480px;
@@ -284,9 +288,9 @@ body {
 	overflow: hidden;
 	margin-left: 25px;
 	margin-right: 25px;
-  }
-  
-  .card::before {
+}
+
+.card::before {
 	content: "";
 	position: absolute;
 	top: -50%;
@@ -295,14 +299,14 @@ body {
 	background: #ffce00;
 	transform: skewY(345deg);
 	transition: 0.5s;
-  }
-  
-  .card:hover::before {
+}
+
+.card:hover::before {
 	top: -70%;
 	transform: skewY(390deg);
-  }
-  
-  .card::after {
+}
+
+.card::after {
 	content: "CORSAIR";
 	position: absolute;
 	bottom: 0;
@@ -310,9 +314,9 @@ body {
 	font-weight: 600;
 	font-size: 6em;
 	color: rgba(0, 0, 0, 0.1);
-  }
-  
-  .card .imgBox {
+}
+
+.card .imgBox {
 	position: relative;
 	width: 100%;
 	display: flex;
@@ -320,20 +324,8 @@ body {
 	align-items: center;
 	padding-top: 20px;
 	z-index: 1;
-  }
-  /*
-  .card .imgBox img {
-	  max-width: 100%;
-	  
-	  transition: .5s;
-  }
-  
-  .card:hover .imgBox img {
-	  max-width: 50%;
-		
-  }
-  */
-  .card .contentBox {
+}
+.card .contentBox {
 	position: relative;
 	padding: 20px;
 	display: flex;
@@ -341,24 +333,24 @@ body {
 	align-items: center;
 	flex-direction: column;
 	z-index: 2;
-  }
-  
-  .card .contentBox h3 {
+}
+
+.card .contentBox h3 {
 	font-size: 18px;
 	color: white;
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-  }
-  
-  .card .contentBox .price {
+}
+
+.card .contentBox .price {
 	font-size: 24px;
 	color: white;
 	font-weight: 700;
 	letter-spacing: 1px;
-  }
-  
-  .card .contentBox .buy {
+}
+
+.card .contentBox .buy {
 	position: relative;
 	top: 100px;
 	opacity: 0;
@@ -371,15 +363,105 @@ body {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	transition: 0.5s;
-  }
-  
-  .card:hover .contentBox .buy {
+}
+
+.card:hover .contentBox .buy {
 	top: 0;
 	opacity: 1;
-  }
-  
-  .mouse {
+}
+
+.mouse {
 	height: 300px;
 	width: auto;
+}
+.content {
+	display: flex;
+	flex-wrap: wrap;
+}
+.cart {
+	flex-basis: 30%;
+	width: 30%;
+	padding-top: 50px;
+	padding-left: 5px;
+	background-color: antiquewhite;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+  }
+  
+  th, td {
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid black;
+  }
+  
+  td:last-child {
+	text-align: center;
+  }
+  
+  button {
+	padding: 5px 10px;
+	border: none;
+	background-color: lightgray;
+	cursor: pointer;
+  }
+  
+  .buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+  }
+
+  .cart img {
+	width:30px;
+	height: 30px;
+	padding-right:5px;
+  }
+
+  .cancel {
+	color: white;
+	background-color: red;
+  }
+  
+  .charge {
+	color: white;
+	background-color: green;
+  }
+  .buttons button {
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+  }
+
+  span {
+	padding: 0 10px;
+  }
+
+  h2 {
+	text-align: center;
+	margin-bottom: 20px;
+  }
+
+  @keyframes spinner {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  .loading-spinner {
+	width: 50px;
+	height: 50px;
+	border: 10px solid #f3f3f3; /* Light grey */
+	border-top: 10px solid #383636; /* Black */
+	border-radius: 50%;
+	animation: spinner 1.5s linear infinite;
   }
   
