@@ -1,5 +1,4 @@
-import { FETCH_PRODUCTS_REQUEST } from '../actions/actionTypes/productTypes';
-import { useQuery, gql, ApolloClient, InMemoryCache } from '@apollo/client';
+import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const GRAPHQL_URL = "https://magento246.com/graphql";
 const GET_PRODUCTS_BY_NAME = gql`
@@ -38,17 +37,16 @@ const client = new ApolloClient({
     uri: GRAPHQL_URL,
     cache: new InMemoryCache()
   });
-const getProducts = (name) => {
-    client.query({
-        query: GET_PRODUCTS_BY_NAME,
-        variables: { name },
-      }).then(response => {
-        console.log(response);
-        return response;
-      })
-      .catch(error => {
+const getProducts = async (name) => {
+      try {
+        const result = await client.query({
+          query: GET_PRODUCTS_BY_NAME,
+          variables: { name },
+        });
+        return result;
+      } catch (error) {
         return error
-      });
+      }
 }
 
 export default getProducts;

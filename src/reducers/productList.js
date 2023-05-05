@@ -15,7 +15,7 @@ const productList = (state = initialState, action) => {
     case FETCH_PRODUCTS_SUCCESS:
       return {
         loading: false,
-        products: action.payload,
+        products: action.payload.products.data.products,
       };
     case FETCH_PRODUCTS_FAILURE:
       return {
