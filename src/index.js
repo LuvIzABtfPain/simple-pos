@@ -5,8 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
+import { fetchProducts } from "./actions/fetchProduct";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+store.dispatch(fetchProducts(''));
 root.render(
   <React.StrictMode>
     <Provider store={store}>

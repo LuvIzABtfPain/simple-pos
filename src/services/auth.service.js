@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://magento246.com/rest/all/V1/integration/admin/token";
+// const API_URL = "https://magento246.com/rest/all/V1/integration/admin/token";
+const API_URL = "http://magento245.local/rest/all/V1/integration/admin/token";
 
 const login = (username, password) => {
   let data = JSON.stringify({

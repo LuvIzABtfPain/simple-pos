@@ -53,7 +53,7 @@ export default function Cart() {
         </tr>
       </tbody>
     </table>
-    <div class="buttons">
+    <div className="buttons">
       <button className="cancel">Cancel</button>
       <button className="charge">Charge</button>
     </div>

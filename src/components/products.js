@@ -4,13 +4,13 @@ import { fetchProducts } from "../actions/fetchProduct";
 import LoadingSpinner from "./loadingspinner";
 
 export default function Products() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { loading, products } = useSelector((state) => state.productList);
-  useEffect(() => {
-    if (!products.length) {
-      dispatch(fetchProducts(''));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!products.length) {
+  //     dispatch(fetchProducts(''));
+  //   }
+  // }, []);
     return(
       <div className="productList">
       { products.items ?

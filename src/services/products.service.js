@@ -1,10 +1,13 @@
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
-const GRAPHQL_URL = "https://magento246.com/graphql";
+// const GRAPHQL_URL = "https://magento246.com/graphql";
+const GRAPHQL_URL = "http://magento245.local/graphql";
+
 const GET_PRODUCTS_BY_NAME = gql`
 query getProducts($name: String!)
   {
-    products(search: $name) {
+    products(search: $name
+            pageSize: 6) {
         total_count
         items {
           name
