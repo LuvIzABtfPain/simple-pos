@@ -2,12 +2,14 @@ import { useDispatch } from "react-redux";
 import { logout } from "../actions/auth";
 import { fetchProducts } from "../actions/fetchProduct";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Modal from "react-modal";
-
+import { fetchUsers } from "../actions/fetchUsers";
 Modal.setAppElement("#root");
 
 export default function TopMenu() {
   const [name, setName] = useState("");
+  const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,9 @@ export default function TopMenu() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (e) => {
+    e.preventDefault();
+    dispatch(fetchUsers());
     setModalIsOpen(true);
   };
 

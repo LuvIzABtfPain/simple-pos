@@ -3,6 +3,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
   } from "../actions/actionTypes/types";
+import { FETCH_USERS_FAILURE } from "../actions/actionTypes/userTypes";
   
   const user = JSON.parse(localStorage.getItem("user"));
   
@@ -32,6 +33,12 @@ import {
           isLoggedIn: false,
           user: null,
         };
+      case FETCH_USERS_FAILURE:
+        return {
+          ...state,
+          isLoggedIn: false,
+          user: null,
+        }
       default:
         return state;
     }
