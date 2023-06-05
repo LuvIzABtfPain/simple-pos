@@ -1,19 +1,13 @@
 import { FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE } from "../actions/actionTypes/userTypes";
 
-const initialState = {
-  users: []
-};
+const initialState = [];
 
 const users = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERS_SUCCESS:
-      return {
-        users: action.payload,
-      };
+      return action.payload;
     case FETCH_USERS_FAILURE:
-      return {
-        users: [],
-      };
+      return [];
     default:
       return state;
   }

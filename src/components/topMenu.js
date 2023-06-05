@@ -3,14 +3,19 @@ import { logout } from "../actions/auth";
 import { fetchProducts } from "../actions/fetchProduct";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import Modal from "react-modal";
 import { fetchUsers } from "../actions/fetchUsers";
+import LoadingSpinner from "./loadingspinner";
 Modal.setAppElement("#root");
 
 export default function TopMenu() {
   const [name, setName] = useState("");
-  const { users } = useSelector((state) => state.users);
+  const { items } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchUsers());
+  // }, [dispatch]);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchProducts(name));
@@ -18,13 +23,11 @@ export default function TopMenu() {
   const handleOnchange = (e) => {
     setName(e.target.value);
   };
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleOpenModal = (e) => {
     e.preventDefault();
-    dispatch(fetchUsers());
     setModalIsOpen(true);
   };
 
@@ -43,13 +46,23 @@ export default function TopMenu() {
       <a href="#" onClick={handleOpenModal}>
         Customers
       </a>
-      <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal} style={{overlay: {zIndex:99}}}>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={handleCloseModal}
+        style={{ overlay: { zIndex: 99 } }}
+      >
         <h2>Select a customer:</h2>
-        <select className="dropdown-list" onChange={handleSelect}>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
+        {items ? (
+          <select className="dropdown-list" onChange={handleSelect}>
+            {items.map((user) => (
+              <option value={user.id}>
+                {user.firstname} {user.lastname}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <LoadingSpinner />
+        )} 
         <button onClick={handleCloseModal}>Close</button>
       </Modal>
       <a href="/" onClick={() => dispatch(logout())}>

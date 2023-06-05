@@ -10,7 +10,7 @@ import {
       (data) => {
         dispatch({
           type: FETCH_USERS_SUCCESS,
-          payload: { users: data },
+          payload: data,
         });
         return Promise.resolve();
       },

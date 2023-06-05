@@ -21,7 +21,7 @@ return axios
     .request(config)
     .then((response) => {
       if (response.data) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("user", response.data);
       }
 
       return response.data;

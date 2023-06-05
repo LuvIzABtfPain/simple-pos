@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { login } from "../actions/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { fetchUsers } from "../actions/fetchUsers";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     dispatch(login(username, password))
+    .then(() => {
+      return dispatch(fetchUsers())
+    })
       .then(() => {
         navigate("/dashboard");
       })
