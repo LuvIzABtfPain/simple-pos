@@ -53,7 +53,7 @@ export default function TopMenu() {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
-        style={{ overlay: { zIndex: 99 }, content: { inset: 400} }}
+        style={{ overlay: { zIndex: 99 }, content: { inset: 345} }}
       >
         <h2>Select a customer:</h2>
         {items ? (
