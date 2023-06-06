@@ -1,16 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchProducts } from "../actions/fetchProduct";
 import LoadingSpinner from "./loadingspinner";
+import { createCart } from "../actions/cart";
 
 export default function Products() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { loading, products } = useSelector((state) => state.productList);
+  const { customer } = useSelector((state) => state.auth);
   // useEffect(() => {
   //   if (!products.length) {
   //     dispatch(fetchProducts(''));
   //   }
   // }, []);
+  const handleOnClick = () => {
+    const token = localStorage.getItem("customer");
+    if(customer != null){
+      dispatch(createCart(customer.id, token));
+    }
+  }
     return(
       <div className="productList">
       { products.items ?
@@ -28,7 +34,7 @@ export default function Products() {
           <h2 className="price">
             <small>{item.price_range.minimum_price.regular_price.value} {item.price_range.minimum_price.regular_price.currency} </small> 
           </h2>
-          <a href="#" className="buy">
+          <a href="#" onClick={() => handleOnClick()} className="buy">
             Buy Now
           </a>
         </div>

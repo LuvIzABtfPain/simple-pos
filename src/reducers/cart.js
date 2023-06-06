@@ -1,30 +1,19 @@
-import { FETCH_PRODUCTS_FAILURE, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS } from "../actions/actionTypes/productTypes";
+import { CREATE_CART_FAIL, CREATE_CART_SUCCESS } from "../actions/actionTypes/types";
 
-const initialState = {
-  loading: false,
-  products: [],
-};
+const initialState = null;
 
-const productList = (state = initialState, action) => {
+const cart = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PRODUCTS_REQUEST:
+    case CREATE_CART_SUCCESS:
       return {
-        ...state,
-        loading: true
+        cartID: action.payload,
+        items: []
       };
-    case FETCH_PRODUCTS_SUCCESS:
-      return {
-        loading: false,
-        products: action.payload.products.data.products,
-      };
-    case FETCH_PRODUCTS_FAILURE:
-      return {
-        loading: false,
-        products: [],
-      };
+    case CREATE_CART_FAIL:
+      return null;
     default:
       return state;
   }
 };
 
-export default productList;
+export default cart;

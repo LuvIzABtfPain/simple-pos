@@ -5,8 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import LoadingSpinner from "./loadingspinner";
-import { useEffect } from "react";
-import { fetchUsers } from "../actions/fetchUsers";
+
 Modal.setAppElement("#root");
 
 export default function TopMenu() {
@@ -39,9 +38,13 @@ export default function TopMenu() {
   };
 
   const handleSelect = (event) => {
+    const customerID = event.target.value;
     setSelectedValue(event.target.value);
-    dispatch(generateCustomerToken(event.target.value));
-    setTitle(event.target.value);
+    const customerEmail = items.find((user) => user.id == customerID).email;
+    dispatch(generateCustomerToken(customerEmail)).then(
+      dispatch({ type: 'UPDATE_CUSTOMER_INFO', payload: {customerID, customerEmail}})
+    );
+    setTitle(customerEmail);
   };
 
   return (
@@ -59,7 +62,7 @@ export default function TopMenu() {
         {items ? (
           <select className="dropdown-list" onChange={handleSelect}>
             {items.map((user) => (
-              <option value={user.email}>
+              <option value={user.id}>
                 {user.email}
               </option>
             ))}

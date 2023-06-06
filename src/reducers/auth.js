@@ -3,9 +3,9 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     GENERATE_CUSTOMER_TOKEN_FAILURE,
-    GENERATE_CUSTOMER_TOKEN_SUCCESS
+    GENERATE_CUSTOMER_TOKEN_SUCCESS,
+    UPDATE_CUSTOMER_INFO
   } from "../actions/actionTypes/types";
-import { FETCH_USERS_FAILURE } from "../actions/actionTypes/userTypes";
   
   const user = localStorage.getItem("user");
   
@@ -38,13 +38,25 @@ import { FETCH_USERS_FAILURE } from "../actions/actionTypes/userTypes";
       case GENERATE_CUSTOMER_TOKEN_SUCCESS:
         return {
           ...state,
-          customer: payload
+          customer: {
+            ...state.customer,
+            token: payload
+          }
         };
       case GENERATE_CUSTOMER_TOKEN_FAILURE:
         return {
           ...state,
           customer: null,
-        }
+        };
+      case UPDATE_CUSTOMER_INFO:
+        return {
+          ...state,
+          customer: {
+            ...state.customer,
+            id: payload.customerID,
+            email: payload.customerEmail
+          }
+        };
       // case FETCH_USERS_FAILURE:
       //   return {
       //     ...state,
