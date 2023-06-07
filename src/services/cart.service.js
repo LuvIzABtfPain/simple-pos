@@ -47,7 +47,52 @@ export const createEmptyCartForCustomer = async (token) => {
     });
     return result.data.createEmptyCart;
   };
-  
+
+export const addSimpleProductToCart = async (cartID, sku) => {
+  const mutation = gql`
+    mutation AddSimpleProductsToCart($cartID: String!, $sku: String!) {
+      addSimpleProductsToCart(
+        input: {
+          cart_id: $cartID
+          cart_items: [
+            {
+              data: {
+                quantity: 1
+                sku: $sku
+              }
+            }
+          ]
+        }
+      ) {
+        cart {
+          items {
+            id
+            product {
+              sku
+              stock_status
+            }
+            quantity
+          }
+        }
+      }
+    }
+  `;
+
+  const variables = {
+    cartID,
+    sku,
+  };
+
+  try {
+    const result = await apolloClient.mutate({
+    mutation,
+    variables,
+    });
+    return result.data.addSimpleProductsToCart.cart.items;
+  } catch (error) {
+    return error;
+  }
+};
   
   // // Merge the current cart with a customer's cart
   // export const mergeCarts = async (customerId, guestCartId, token) => {
@@ -97,6 +142,7 @@ export const createEmptyCartForCustomer = async (token) => {
   const CartService = {
     createEmptyCartForCustomer,
     createEmptyCartForGuest,
+    addSimpleProductToCart
     // mergeCarts,
     // removeItemFromCart,
     // Other cart actions...

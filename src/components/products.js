@@ -6,18 +6,14 @@ export default function Products() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productList);
   const { customer } = useSelector((state) => state.auth);
-  // useEffect(() => {
-  //   if (!products.length) {
-  //     dispatch(fetchProducts(''));
-  //   }
-  // }, []);
-  const handleOnClick = () => {
+  const handleOnClick = (sku) => {
     if(customer != null){
       const token = localStorage.getItem("customer");
       dispatch(createCart(token));
     } else {
       dispatch(createCart());
     }
+    
   }
     return(
       <div className="productList">
@@ -36,7 +32,7 @@ export default function Products() {
           <h2 className="price">
             <small>{item.price_range.minimum_price.regular_price.value} {item.price_range.minimum_price.regular_price.currency} </small> 
           </h2>
-          <a href="#" onClick={() => handleOnClick()} className="buy">
+          <a href="#" onClick={() => handleOnClick(item.sku)} className="buy">
             Buy Now
           </a>
         </div>
