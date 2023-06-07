@@ -4,7 +4,7 @@ import { createCart } from "../actions/cart";
 
 export default function Products() {
   const dispatch = useDispatch();
-  const { loading, products } = useSelector((state) => state.productList);
+  const { products } = useSelector((state) => state.productList);
   const { customer } = useSelector((state) => state.auth);
   // useEffect(() => {
   //   if (!products.length) {
@@ -12,9 +12,11 @@ export default function Products() {
   //   }
   // }, []);
   const handleOnClick = () => {
-    const token = localStorage.getItem("customer");
     if(customer != null){
-      dispatch(createCart(customer.id, token));
+      const token = localStorage.getItem("customer");
+      dispatch(createCart(token));
+    } else {
+      dispatch(createCart());
     }
   }
     return(

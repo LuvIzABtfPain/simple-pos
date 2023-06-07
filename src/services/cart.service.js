@@ -1,5 +1,4 @@
 import { gql, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-const token = localStorage.getItem('customer');
 const apolloClient = new ApolloClient({
     link: createHttpLink({
       uri: 'http://magento245.local/graphql',
@@ -8,7 +7,7 @@ const apolloClient = new ApolloClient({
   });
 
 // Create an empty cart for a logged-in customer
-export const createEmptyCartForCustomer = async (customerId, token) => {
+export const createEmptyCartForCustomer = async (token) => {
   const query = gql`
     {
       customerCart {
@@ -19,7 +18,6 @@ export const createEmptyCartForCustomer = async (customerId, token) => {
 
   const headers = {
     Authorization: `Bearer ${token}`,
-    // Other headers
   };
 
   try {
@@ -37,19 +35,19 @@ export const createEmptyCartForCustomer = async (customerId, token) => {
 };
   
   //  Create an empty cart for a guest customer
-  // export const createEmptyCartForGuest = async () => {
-  //   const mutation = gql`
-  //     mutation {
-  //       createEmptyCartForGuest {
-  //         cart_id
-  //       }
-  //     }
-  //   `;
+  export const createEmptyCartForGuest = async () => {
+    const mutation = gql`
+      mutation {
+        createEmptyCart
+      }
+    `;
   
-  //   const { createEmptyCartForGuest } = await apoll.request(mutation);
+    const result = await apolloClient.mutate({
+      mutation,
+    });
+    return result.data.createEmptyCart;
+  };
   
-  //   return createEmptyCartForGuest.cart_id;
-  // };
   
   // // Merge the current cart with a customer's cart
   // export const mergeCarts = async (customerId, guestCartId, token) => {
@@ -98,7 +96,7 @@ export const createEmptyCartForCustomer = async (customerId, token) => {
   // Export all cart service functions as an object
   const CartService = {
     createEmptyCartForCustomer,
-    // createEmptyCartForGuest,
+    createEmptyCartForGuest,
     // mergeCarts,
     // removeItemFromCart,
     // Other cart actions...
