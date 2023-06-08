@@ -16,7 +16,7 @@ const cart = (state = initialState, action) => {
     case ADD_TO_CART_SUCCESS:
       return {
         ...state,
-        items: [...state.items, action.payload]
+        items: action.payload
       }
     case UPDATE_CUSTOMER_INFO:
       return {

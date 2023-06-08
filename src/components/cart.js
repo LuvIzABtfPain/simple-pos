@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { createCart } from "../actions/cart";
+import LoadingSpinner from "./loadingspinner";
 export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -28,47 +29,26 @@ export default function Cart() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            <img src="https://magento246.com/media/catalog/product/cache/848413c1849be34ae62ad85a67a8cff3/h/o/hot-girl_1.jpg" alt="Item 1"/>
-            <span>Item 1</span>
-          </td>
-          <td>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-          </td>
-          <td>$10.00</td>
-          <td><button><i className="fas fa-trash-alt"></i></button></td>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://magento246.com/media/catalog/product/cache/848413c1849be34ae62ad85a67a8cff3/h/o/hot-girl_1.jpg" alt="Item 2"/>
-            <span>Item 2</span>
-          </td>
-          <td>
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-          </td>
-          <td>$20.00</td>
-          <td><button><i className="fas fa-trash-alt"></i></button></td>
-        </tr>
-        <tr>
-          <td>
-            <img src="https://magento246.com/media/catalog/product/cache/848413c1849be34ae62ad85a67a8cff3/h/o/hot-girl_1.jpg" alt="Item 3"/>
-            <span>Item 3</span>
-          </td>
-          <td>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-          </td>
-          <td>$15.00</td>
-          <td><button><i className="fas fa-trash-alt"></i></button></td>
-        </tr>
+        {
+          (cart.items && (cart.items != [])) ? cart.items.map(item => (
+              <tr>
+                <td>
+                  <img src={item.product.image.url} alt="Item 1"/>
+                  <span>{item.product.sku}</span>
+                </td>
+                <td>
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </td>
+                <td>{item.product.price_range.minimum_price.regular_price.currency == 'USD' ? '$' : ''} {item.product.price_range.minimum_price.regular_price.value}</td>
+                <td><button><i className="fas fa-trash-alt"></i></button></td>
+              </tr>
+          ))
+          : <div>There is no items in cart</div>
+        }
       </tbody>
-    </table>
+      </table>
     <div className="buttons">
       <button className="cancel">Cancel</button>
       <button className="charge">Charge</button>

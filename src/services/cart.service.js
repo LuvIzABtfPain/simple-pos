@@ -70,6 +70,17 @@ export const addSimpleProductToCart = async (cartID, sku) => {
             product {
               sku
               stock_status
+              image {
+                url
+              }
+              price_range {
+                minimum_price {
+                  regular_price {
+                    value
+                    currency
+                  }
+                }
+              }
             }
             quantity
           }
@@ -82,11 +93,16 @@ export const addSimpleProductToCart = async (cartID, sku) => {
     cartID,
     sku,
   };
-
+  const token = localStorage.getItem('customer')
   try {
     const result = await apolloClient.mutate({
     mutation,
     variables,
+    context: {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
     });
     return result.data.addSimpleProductsToCart.cart.items;
   } catch (error) {
