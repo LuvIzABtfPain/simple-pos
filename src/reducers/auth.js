@@ -55,7 +55,7 @@ import {
             ...state.customer,
             id: payload.customerID,
             email: payload.customerEmail
-          }
+          },
         };
       // case FETCH_USERS_FAILURE:
       //   return {

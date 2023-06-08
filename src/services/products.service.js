@@ -7,7 +7,8 @@ const GET_PRODUCTS_BY_NAME = gql`
 query getProducts($name: String!)
   {
     products(search: $name
-            pageSize: 6) {
+            pageSize: 6
+            currentPage:30) {
         total_count
         items {
           name

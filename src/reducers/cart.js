@@ -1,6 +1,6 @@
-import { CREATE_CART_FAIL, CREATE_CART_SUCCESS, ADD_TO_CART_SUCCESS, ADD_TO_CART_FAIL } from "../actions/actionTypes/types";
+import { CREATE_CART_FAIL, CREATE_CART_SUCCESS, ADD_TO_CART_SUCCESS, ADD_TO_CART_FAIL, UPDATE_CUSTOMER_INFO } from "../actions/actionTypes/types";
 
-const initialState = null;
+const initialState = { cartID: null };
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
@@ -10,13 +10,19 @@ const cart = (state = initialState, action) => {
         items: []
       };
     case CREATE_CART_FAIL:
-      return null;
+      return state;
     case ADD_TO_CART_FAIL:
       return state;
     case ADD_TO_CART_SUCCESS:
       return {
         ...state,
-        items: action.payload
+        items: [...state.items, action.payload]
+      }
+    case UPDATE_CUSTOMER_INFO:
+      return {
+        ...state,
+        cartID: null,
+        items: []
       }
     default:
       return state;

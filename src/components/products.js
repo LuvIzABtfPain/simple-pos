@@ -1,19 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import LoadingSpinner from "./loadingspinner";
-import { createCart } from "../actions/cart";
+import { addProductToCart, createCart } from "../actions/cart";
 
 export default function Products() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productList);
+  const { cartID } = useSelector((state) => state.cart);
   const { customer } = useSelector((state) => state.auth);
+
   const handleOnClick = (sku) => {
-    if(customer != null){
-      const token = localStorage.getItem("customer");
-      dispatch(createCart(token));
+    if(cartID != null) {
+    dispatch(addProductToCart(cartID, sku));
     } else {
-      dispatch(createCart());
+      if(customer == null){
+        dispatch(createCart()).then(
+          (newCartID) => dispatch(addProductToCart(newCartID, sku))
+          )
+      } else {
+        const token = localStorage.getItem('customer');
+        dispatch(createCart(token)).then(
+          (newCartID) => dispatch(addProductToCart(newCartID, sku))
+        );
+      }
     }
-    
   }
     return(
       <div className="productList">

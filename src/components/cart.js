@@ -1,4 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { createCart } from "../actions/cart";
 export default function Cart() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const { customer } = useSelector((state) => state.auth);
+  // useEffect(() => {
+  //   if(cart.cartID == null){
+  //     if(customer == null){
+  //       dispatch(createCart())
+  //     } else {
+  //       dispatch(createCart(customer));
+  //     }
+  //   }
+  // }, [customer])
   return (
     <div className="cart">
       <h2>Cart</h2>
