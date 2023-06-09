@@ -148,26 +148,45 @@ export const addConfigurableProductToCart = async (cart_id, cart_items) => {
     return error;
   }
 };
-  // // Merge the current cart with a customer's cart
-  // export const mergeCarts = async (customerId, guestCartId, token) => {
-  //   const mutation = gql`
-  //     mutation {
-  //       mergeCarts(input: { customer_id: "${customerId}", guest_cart_id: "${guestCartId}" }) {
-  //         cart {
-  //           id
-  //         }
-  //       }
-  //     }
-  //   `;
+  // Merge the current cart with a customer's cart
+  export const mergeCarts = async (sourceCartID, destination_cart_id, token) => {
+    const mutation = gql`
+      mutation {
+        mergeCarts(input: { source_cart_id: "${sourceCartID}", destination_cart_id: "${destination_cart_id}" }) {
+          items {
+            id
+            product {
+              sku
+              stock_status
+              image {
+                url
+              }
+              price_range {
+                minimum_price {
+                  regular_price {
+                    value
+                    currency
+                  }
+                }
+              }
+            }
+            quantity
+          }
+        }
+      }
+    `;
   
-  //   const { mergeCarts } = await graphqlClient.request(mutation, null, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
+    const { result } = await apolloClient.mutate({
+      mutation,
+      context: {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    });
   
-  //   return mergeCarts.cart.id;
-  // };
+    return result.data.mergeCarts.items;
+  };
   
   // // Remove an item from the cart
   // export const removeItemFromCart = async (cartId, itemId, token) => {
@@ -197,8 +216,8 @@ export const addConfigurableProductToCart = async (cart_id, cart_items) => {
     createEmptyCartForCustomer,
     createEmptyCartForGuest,
     addSimpleProductToCart,
-    addConfigurableProductToCart
-    // mergeCarts,
+    addConfigurableProductToCart,
+    mergeCarts,
     // removeItemFromCart,
     // Other cart actions...
   };

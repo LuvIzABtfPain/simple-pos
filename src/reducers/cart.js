@@ -21,8 +21,8 @@ const cart = (state = initialState, action) => {
     case UPDATE_CUSTOMER_INFO:
       return {
         ...state,
-        cartID: null,
-        items: []
+        cartID: action.payload.cartID,
+        items: action.payload.items
       }
     default:
       return state;

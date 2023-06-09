@@ -56,7 +56,7 @@ import {
           type: GENERATE_CUSTOMER_TOKEN_SUCCESS,
           payload: data
         });
-        return Promise.resolve();
+        return Promise.resolve(data);
       },
       (error) => {
         dispatch({

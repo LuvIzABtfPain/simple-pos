@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import LoadingSpinner from "./loadingspinner";
+import { createCart, mergeCarts } from "../actions/cart";
+import { createEmptyCartForCustomer } from "../services/cart.service";
 
 Modal.setAppElement("#root");
 
@@ -12,6 +14,7 @@ export default function TopMenu() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("Customers");
   const { items } = useSelector((state) => state.users);
+  const { cartID } = useSelector((state) => state.cart)
   const dispatch = useDispatch();
   // useEffect(() => {
   //   if(items === null) {
@@ -41,8 +44,18 @@ export default function TopMenu() {
     const customerID = event.target.value;
     setSelectedValue(event.target.value);
     const customerEmail = items.find((user) => user.id == customerID).email;
-    dispatch(generateCustomerToken(customerEmail)).then(
-      dispatch({ type: 'UPDATE_CUSTOMER_INFO', payload: {customerID, customerEmail}})
+    dispatch(generateCustomerToken(customerEmail)).then((token) => {
+      if(title === 'Customers' && cartID != null){
+        dispatch(mergeCarts(token, cartID)).then((result) => {
+          const { data, newCartID } = result;
+          dispatch({
+            type: 'UPDATE_CUSTOMER_INFO',
+            payload: { customerID, customerEmail, cartID: newCartID, items: data },
+          });
+        })
+      }
+      dispatch({ type: 'UPDATE_CUSTOMER_INFO', payload: {customerID, customerEmail, cartID:null, items:[]}})
+    }
     );
     setTitle(customerEmail);
   };

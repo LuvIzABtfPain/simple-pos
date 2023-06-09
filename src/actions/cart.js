@@ -92,3 +92,27 @@ export const addProductToCart = (cartID, sku) => (dispatch) => {
     }
   )
 }
+
+export const mergeCarts = (token, oldCartID) => (dispatch) => {
+  CartService.createEmptyCartForCustomer(token).then(newCartID => {
+    return CartService.mergeCarts(oldCartID, newCartID, token).then(
+      (data) => {
+        return Promise.resolve(data, newCartID);
+      },
+      (error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        dispatch({
+          type: SET_MESSAGE,
+          payload: message,
+        });
+  
+        return Promise.reject();
+      }
+    )
+  })
+}
