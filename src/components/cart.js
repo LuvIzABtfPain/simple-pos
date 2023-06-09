@@ -33,15 +33,15 @@ export default function Cart() {
           (cart.items && (cart.items != [])) ? cart.items.map(item => (
               <tr>
                 <td>
-                  <img src={item.product.image.url} alt="Item 1"/>
+                  <img src={item.product.image.url} alt={item.uid}/>
                   <span>{item.product.sku}</span>
                 </td>
                 <td>
                   <button>-</button>
-                  <span>1</span>
+                  <span>{item.quantity}</span>
                   <button>+</button>
                 </td>
-                <td>{item.product.price_range.minimum_price.regular_price.currency == 'USD' ? '$' : ''} {item.product.price_range.minimum_price.regular_price.value}</td>
+                <td>{item.product.price_range.minimum_price.regular_price.currency == 'USD' ? '$' : ''} {item.product.price_range.minimum_price.regular_price.value * item.quantity}</td>
                 <td><button><i className="fas fa-trash-alt"></i></button></td>
               </tr>
           ))
