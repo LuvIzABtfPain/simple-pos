@@ -206,7 +206,7 @@ export const mergeCarts = async (sourceCartID, destination_cart_id, token) => {
 };
 
 // Remove an item from the cart
-export const updateCartItems = async (cartID, cartItems) => {
+export const updateCartItems = async (cartID, cartItems, token) => {
   const UPDATE_CART_ITEMS_MUTATION = gql`
     mutation UpdateCartItems($cartID: String!, $cartItems: [CartItemInput!]!) {
       updateCartItems(input: { cart_id: $cartID, cart_items: $cartItems }) {
@@ -263,8 +263,7 @@ export const updateCartItems = async (cartID, cartItems) => {
     });
 
     // Access the updated cart data
-    const updatedCart = response.data.updateCartItems.cart;
-    return updatedCart;
+    return response.data.updateCartItems.cart;
   } catch (error) {
     throw error;
   }

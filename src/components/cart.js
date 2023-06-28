@@ -1,13 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { createCart } from "../actions/cart";
-import LoadingSpinner from "./loadingspinner";
+import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { customer } = useSelector((state) => state.auth);
-  // useEffect(() => {
+  const navigate = useNavigate();
+    const navigateToCheckout = () => {
+        if(cart.items) {
+            navigate('/checkout')
+        }
+    };
+
+    // useEffect(() => {
   //   if(cart.cartID == null){
   //     if(customer == null){
   //       dispatch(createCart())
@@ -51,7 +57,7 @@ export default function Cart() {
       </table>
     <div className="buttons">
       <button className="cancel">Cancel</button>
-      <button className="charge">Charge</button>
+      <button className="charge" onClick={navigateToCheckout}>Charge</button>
     </div>
     </div>
   );

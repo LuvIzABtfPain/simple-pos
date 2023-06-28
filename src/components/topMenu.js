@@ -5,8 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import LoadingSpinner from "./loadingspinner";
-import { createCart, mergeCarts } from "../actions/cart";
-import { createEmptyCartForCustomer } from "../services/cart.service";
+import { mergeCarts } from "../actions/cart";
 
 Modal.setAppElement("#root");
 
